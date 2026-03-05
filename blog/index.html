@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pacifica Local Guide | Coastal Catch Agency Blog</title>
+<meta name="description" content="Your guide to Pacifica, CA. Discover the best restaurants, shops, services, and things to do in our coastal community. By Coastal Catch Agency, your Pacifica neighbors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #0f1b2d;
+    --blue: #2563eb;
+    --light-blue: #93c5fd;
+    --sky: #dbeafe;
+    --white: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-500: #64748b;
+    --gray-700: #334155;
+    --gray-900: #0f172a;
+    --teal: #0d9488;
+    --coral: #e07a5f;
+  }
+  body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-900); line-height: 1.6; }
+  a { color: var(--blue); text-decoration: none; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(15,27,45,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  nav .container { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+  .nav-brand { display: flex; align-items: center; gap: 12px; color: white; font-weight: 700; font-size: 18px; text-decoration: none; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500; }
+  .nav-links a:hover { color: white; }
+  .nav-cta { background: var(--blue); color: white !important; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 14px; }
+  .mobile-toggle { display: none; background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .mobile-toggle { display: block; }
+    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--navy); padding: 20px 24px; gap: 16px; }
+  }
+
+  /* HERO */
+  .blog-hero {
+    padding: 120px 0 60px;
+    background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 50%, var(--teal) 100%);
+    color: white;
+    text-align: center;
+  }
+  .blog-hero h1 { font-size: 42px; font-weight: 900; margin-bottom: 16px; }
+  .blog-hero p { font-size: 18px; opacity: 0.85; max-width: 600px; margin: 0 auto; }
+  @media (max-width: 768px) { .blog-hero h1 { font-size: 28px; } .blog-hero p { font-size: 16px; } }
+
+  /* CATEGORIES */
+  .categories { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+  .cat-pill { background: rgba(255,255,255,0.15); color: white; padding: 8px 20px; border-radius: 50px; font-size: 14px; font-weight: 600; border: 1px solid rgba(255,255,255,0.2); transition: all 0.2s; cursor: pointer; text-decoration: none; }
+  .cat-pill:hover, .cat-pill.active { background: white; color: var(--navy); }
+
+  /* ARTICLE GRID */
+  .articles { padding: 60px 0; }
+  .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px; }
+  @media (max-width: 768px) { .article-grid { grid-template-columns: 1fr; } }
+
+  .article-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .article-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+  .article-img {
+    width: 100%; height: 200px; object-fit: cover;
+  }
+  .article-body { padding: 24px; }
+  .article-tag { display: inline-block; background: var(--sky); color: var(--blue); padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; }
+  .article-tag.food { background: #fef3c7; color: #92400e; }
+  .article-tag.services { background: #d1fae5; color: #065f46; }
+  .article-tag.events { background: #ede9fe; color: #5b21b6; }
+  .article-tag.spotlight { background: #fce7f3; color: #9d174d; }
+  .article-tag.outdoor { background: #ccfbf1; color: #0d9488; }
+  .article-body h2 { font-size: 20px; font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
+  .article-body p { color: var(--gray-500); font-size: 14px; line-height: 1.6; }
+  .article-meta { margin-top: 16px; font-size: 13px; color: var(--gray-500); }
+
+  /* NEWSLETTER */
+  .newsletter {
+    background: var(--gray-50);
+    padding: 60px 0;
+    text-align: center;
+  }
+  .newsletter h2 { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
+  .newsletter p { color: var(--gray-500); max-width: 500px; margin: 0 auto 24px; }
+
+  /* FOOTER */
+  footer { background: var(--navy); color: rgba(255,255,255,0.7); padding: 40px 0; text-align: center; font-size: 14px; }
+  footer a { color: rgba(255,255,255,0.9); }
+
+  /* CTA BANNER */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--blue), #7c3aed);
+    color: white;
+    padding: 48px 24px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 40px 0;
+  }
+  .cta-banner h2 { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
+  .cta-banner p { opacity: 0.9; margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .cta-btn { display: inline-block; background: white; color: var(--blue); padding: 14px 32px; border-radius: 10px; font-weight: 700; font-size: 16px; }
+  .cta-btn:hover { background: var(--gray-100); color: var(--blue); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <a href="../" class="nav-brand">🌊 Coastal Catch Agency</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../#services">Services</a></li>
+      <li><a href="../#pricing">Pricing</a></li>
+      <li><a href="./">Pacifica Guide</a></li>
+      <li><a href="../#contact">Contact</a></li>
+    </ul>
+    <a href="../#contact" class="nav-cta">Book Free Consultation</a>
+    <button class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <div class="container">
+    <h1>The Pacifica Local Guide</h1>
+    <p>We're your neighbors. Here's our love letter to the businesses, food, and adventures that make Pacifica special.</p>
+    <div class="categories">
+      <a href="#" class="cat-pill active" onclick="filterArticles('all')">All</a>
+      <a href="#" class="cat-pill" onclick="filterArticles('food')">🍽 Food & Drink</a>
+      <a href="#" class="cat-pill" onclick="filterArticles('services')">🛠 Local Services</a>
+      <a href="#" class="cat-pill" onclick="filterArticles('outdoor')">🌊 Outdoors</a>
+      <a href="#" class="cat-pill" onclick="filterArticles('spotlight')">⭐ Business Spotlight</a>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="articles">
+  <div class="container">
+    <div class="article-grid">
+
+      <a href="best-restaurants-pacifica.html" class="article-card" data-cat="food">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop" alt="Pacifica restaurants" class="article-img">
+        <div class="article-body">
+          <span class="article-tag food">Food & Drink</span>
+          <h2>15 Best Restaurants in Pacifica You Need to Try</h2>
+          <p>From oceanfront seafood to hidden taqueria gems, here's our definitive guide to eating well in Pacifica.</p>
+          <div class="article-meta">March 3, 2026</div>
+        </div>
+      </a>
+
+      <a href="things-to-do-pacifica.html" class="article-card" data-cat="outdoor">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" alt="Pacifica coastline" class="article-img">
+        <div class="article-body">
+          <span class="article-tag outdoor">Outdoors</span>
+          <h2>25 Things to Do in Pacifica This Weekend</h2>
+          <p>Hikes, beaches, surf spots, and family fun. Your complete weekend guide to California's best-kept coastal secret.</p>
+          <div class="article-meta">March 3, 2026</div>
+        </div>
+      </a>
+
+      <a href="small-business-spotlight-pacifica.html" class="article-card" data-cat="spotlight">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" alt="Small business" class="article-img">
+        <div class="article-body">
+          <span class="article-tag spotlight">Business Spotlight</span>
+          <h2>Pacifica Small Business Spotlight: March 2026</h2>
+          <p>Meet the local entrepreneurs making Pacifica thrive. This month we feature 5 businesses you should know about.</p>
+          <div class="article-meta">March 3, 2026</div>
+        </div>
+      </a>
+
+      <a href="best-coffee-shops-pacifica.html" class="article-card" data-cat="food">
+        <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&h=400&fit=crop" alt="Coffee shop" class="article-img">
+        <div class="article-body">
+          <span class="article-tag food">Food & Drink</span>
+          <h2>Best Coffee Shops in Pacifica for Remote Workers</h2>
+          <p>WiFi, vibes, and great coffee. The best spots to set up your laptop and get work done with an ocean view.</p>
+          <div class="article-meta">March 3, 2026</div>
+        </div>
+      </a>
+
+      <a href="pacifica-services-guide.html" class="article-card" data-cat="services">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&h=400&fit=crop" alt="Home services" class="article-img">
+        <div class="article-body">
+          <span class="article-tag services">Local Services</span>
+          <h2>Trusted Home Services in Pacifica: Plumbers, Electricians, and More</h2>
+          <p>Need a reliable handyman, plumber, or electrician in Pacifica? Here are the local pros your neighbors recommend.</p>
+          <div class="article-meta">March 3, 2026</div>
+        </div>
+      </a>
+
+      <a href="why-pacifica-businesses-need-websites.html" class="article-card" data-cat="spotlight">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="Website design" class="article-img">
+        <div class="article-body">
+          <span class="article-tag spotlight">Business Spotlight</span>
+          <h2>Why 68% of Pacifica Businesses Are Invisible Online (And How to Fix It)</h2>
+          <p>We checked every business on Palmetto Ave. Most don't have websites. Here's why that's costing them customers every single day.</p>
+          <div class="article-meta">March 3, 2026</div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- CTA BANNER -->
+    <div class="cta-banner">
+      <h2>Is Your Business on the Map?</h2>
+      <p>We're featuring Pacifica businesses in our local guide. Want to be included? It's free for local businesses.</p>
+      <a href="../#contact" class="cta-btn">Get Featured (Free)</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>🌊 Coastal Catch Agency &mdash; Proudly based in Pacifica, CA</p>
+    <p style="margin-top:8px;"><a href="../">Home</a> &middot; <a href="../#services">Services</a> &middot; <a href="../#pricing">Pricing</a> &middot; <a href="../#contact">Contact</a></p>
+    <p style="margin-top:16px; opacity:0.5;">© 2026 Coastal Catch Agency. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+function filterArticles(cat) {
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.article-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+
+<!-- tawk.to -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/69a74258fad6b61c35fd47ac/1jiqlma54';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+
+</body>
+</html>

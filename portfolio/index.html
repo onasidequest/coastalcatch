@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bri from ThriveBright — Portfolio | Coastal Catch Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #0f1b2d;
+    --blue: #2563eb;
+    --light-blue: #93c5fd;
+    --sky: #dbeafe;
+    --white: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-500: #64748b;
+    --gray-700: #334155;
+    --gray-900: #0f172a;
+  }
+  body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-900); line-height: 1.6; }
+  a { color: var(--blue); text-decoration: none; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  nav {
+    background: var(--navy); border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  nav .container {
+    display: flex; align-items: center; justify-content: space-between; height: 70px;
+  }
+  .logo { font-weight: 800; font-size: 20px; color: white; letter-spacing: -0.5px; }
+  .logo span { color: var(--light-blue); }
+  nav a.btn { background: var(--blue); color: white; padding: 10px 24px; border-radius: 8px; font-weight: 600; font-size: 14px; transition: background 0.2s; }
+  nav a.btn:hover { background: #1d4ed8; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 100%);
+    color: white; padding: 80px 0 60px; text-align: center;
+  }
+  .hero .subtitle { color: var(--light-blue); font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+  .hero h1 { font-size: 48px; font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+  .hero h1 span { color: var(--light-blue); }
+  .hero p { font-size: 18px; color: #94a3b8; max-width: 600px; margin: 0 auto 32px; }
+  .stats { display: flex; justify-content: center; gap: 40px; }
+  .stat { text-align: center; }
+  .stat-num { font-size: 32px; font-weight: 800; color: var(--light-blue); }
+  .stat-label { font-size: 13px; color: #94a3b8; }
+
+  /* ABOUT */
+  .about { padding: 60px 0; background: var(--gray-50); }
+  .about-box { background: white; border-radius: 16px; padding: 40px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .about-box h2 { font-size: 28px; font-weight: 800; margin-bottom: 16px; }
+  .about-box p { color: var(--gray-700); margin-bottom: 12px; }
+
+  /* WORK */
+  .work { padding: 60px 0; }
+  .section-label { color: var(--blue); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-align: center; margin-bottom: 8px; }
+  .section-title { font-size: 36px; font-weight: 800; text-align: center; margin-bottom: 48px; }
+  .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 768px) { .work-grid { grid-template-columns: 1fr; } }
+  .work-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid var(--gray-200); transition: transform 0.2s, box-shadow 0.2s; }
+  .work-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); }
+  .work-card-img { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 48px; }
+  .work-card-body { padding: 20px; }
+  .work-tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 50px; margin-bottom: 8px; }
+  .work-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .work-card p { font-size: 14px; color: var(--gray-500); }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 60px 0; background: var(--gray-50); }
+  .test-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  @media (max-width: 768px) { .test-grid { grid-template-columns: 1fr; } }
+  .test-card { background: white; border-radius: 16px; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid var(--gray-200); }
+  .stars { color: #f59e0b; font-size: 16px; margin-bottom: 12px; }
+  .test-card blockquote { font-size: 14px; color: var(--gray-700); line-height: 1.7; font-style: italic; margin-bottom: 16px; }
+  .test-name { font-weight: 700; font-size: 14px; }
+  .test-role { font-size: 13px; color: var(--gray-500); }
+
+  /* SERVICES */
+  .services { padding: 60px 0; }
+  .svc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  @media (max-width: 768px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } }
+  .svc-card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 16px; padding: 24px; text-align: center; transition: transform 0.2s; }
+  .svc-card:hover { transform: translateY(-3px); }
+  .svc-icon { font-size: 36px; margin-bottom: 12px; }
+  .svc-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .svc-card p { font-size: 13px; color: var(--gray-500); }
+
+  /* CTA */
+  .cta { padding: 60px 0; text-align: center; background: linear-gradient(135deg, var(--navy), #1e3a5f); color: white; }
+  .cta h2 { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+  .cta p { font-size: 18px; color: #94a3b8; margin-bottom: 24px; }
+  .cta-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .cta-btn { padding: 14px 32px; border-radius: 8px; font-weight: 700; font-size: 16px; transition: all 0.2s; display: inline-block; }
+  .cta-btn-primary { background: var(--blue); color: white; }
+  .cta-btn-primary:hover { background: #1d4ed8; }
+  .cta-btn-secondary { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
+  .cta-btn-secondary:hover { background: rgba(255,255,255,0.2); }
+
+  /* FOOTER */
+  footer { padding: 24px 0; text-align: center; font-size: 13px; color: var(--gray-500); border-top: 1px solid var(--gray-200); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="logo">Coastal <span>Catch</span></div>
+    <a href="https://www.fiverr.com/thrivebrightlife" target="_blank" class="btn">Hire Me on Fiverr</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="subtitle">Marketing Consultant &amp; Web Designer</div>
+    <h1>Bri<br><span>10+ Years Growing Businesses</span></h1>
+    <p>Marketing strategy, web design, and content creation for small businesses. Based in San Francisco Bay Area, working with clients nationwide.</p>
+    <div class="stats">
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Projects Delivered</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Satisfaction</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="container">
+    <div class="about-box">
+      <h2>About Me</h2>
+      <p>I'm Bri, a marketing consultant based in the San Francisco Bay Area. Since 2015, I've helped businesses of all sizes build and grow their online presence through strategic marketing, modern web design, and compelling content.</p>
+      <p>My experience spans startups to established brands. I've built national marketing event programs that drove record customer growth, developed content strategies that increased engagement by 200%+, and designed websites that convert visitors into paying customers.</p>
+      <p>I work independently, which means you're always communicating directly with the person doing the work. No hand-offs, no junior team members -- just me bringing 10+ years of experience to every project.</p>
+      <p><strong>Industries:</strong> Home services, SaaS startups, hospitality, e-commerce, health and wellness, real estate, food and beverage, and non-profits.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work">
+  <div class="container">
+    <div class="section-label">Portfolio</div>
+    <div class="section-title">Recent Work</div>
+    <div class="work-grid">
+
+      <div class="work-card">
+        <div class="work-card-img" style="background: linear-gradient(135deg, #1e3a5f, #2563eb);">🌊</div>
+        <div class="work-card-body">
+          <span class="work-tag" style="background: #dbeafe; color: #1d4ed8;">Web Design</span>
+          <h3>Marketing Agency Website</h3>
+          <p>Full responsive site with pricing tiers, contact forms, testimonials, SEO, and automated lead capture.</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-img" style="background: linear-gradient(135deg, #831843, #db2777);">💇</div>
+        <div class="work-card-body">
+          <span class="work-tag" style="background: #fce7f3; color: #be185d;">Web Design</span>
+          <h3>Hair Salon Website</h3>
+          <p>Modern salon site with booking integration, service menu, gallery, and mobile-first design.</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-img" style="background: linear-gradient(135deg, #1e293b, #475569);">🔧</div>
+        <div class="work-card-body">
+          <span class="work-tag" style="background: #f1f5f9; color: #475569;">Web Design</span>
+          <h3>Auto Repair Shop</h3>
+          <p>Professional site with click-to-call, Google Maps, service listings, and review integration.</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-img" style="background: linear-gradient(135deg, #312e81, #6366f1);">📅</div>
+        <div class="work-card-body">
+          <span class="work-tag" style="background: #e0e7ff; color: #4338ca;">Content Strategy</span>
+          <h3>Social Media Content Plans</h3>
+          <p>Full-month content calendars with post copy, hashtag strategy, carousel designs, and reel scripts.</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-img" style="background: linear-gradient(135deg, #064e3b, #059669);">✍️</div>
+        <div class="work-card-body">
+          <span class="work-tag" style="background: #d1fae5; color: #047857;">Blog Writing</span>
+          <h3>SEO Blog Articles</h3>
+          <p>Long-form, keyword-optimized articles (1,500-2,500 words) on business, tech, and marketing topics.</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-img" style="background: linear-gradient(135deg, #78350f, #d97706);">📦</div>
+        <div class="work-card-body">
+          <span class="work-tag" style="background: #fef3c7; color: #b45309;">Digital Products</span>
+          <h3>Planners and Templates</h3>
+          <p>Designed and launched 8+ digital products including journals, planners, habit trackers, and business tools.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-label">Testimonials</div>
+    <div class="section-title">What Clients Say</div>
+    <div class="test-grid">
+
+      <div class="test-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Bri is hard working, detail-oriented, and results-driven. She helped launched our marketing events program and oversaw all key components, from managing costs, to staffing, to tracking metrics and progress across all of our markets. She demonstrated initiative and hustle in getting event partnerships and sponsorships set up, and built a scalable, replicable approach to events that we were able to ramp up quickly in all markets."</blockquote>
+        <div class="test-name">Ajay P.</div>
+        <div class="test-role">Co-Founder & CEO, Tech Startup</div>
+      </div>
+
+      <div class="test-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Bri is a special talent. She had the creative vision and follow through to orchestrate a national marketing events strategy that played an integral role in both brand awareness and record high new customer growth."</blockquote>
+        <div class="test-name">Ashkan M.</div>
+        <div class="test-role">Partner, Venture Capital Firm</div>
+      </div>
+
+      <div class="test-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"We had no strategy and little activity but Bri quickly helped us establish our voice by developing a number of fun campaigns. With her amazing attitude and energy, she helped us with a number of important projects."</blockquote>
+        <div class="test-name">Jason J.</div>
+        <div class="test-role">CEO, Smart Home Company</div>
+      </div>
+
+      <div class="test-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Bri is a joy to work with! She's professional, dedicated, and delivers meticulous quality in everything she does."</blockquote>
+        <div class="test-name">Parth P.</div>
+        <div class="test-role">Engineering Leader</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <div class="section-label">Services</div>
+    <div class="section-title">What I Offer</div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-icon">🌐</div>
+        <h3>Web Design</h3>
+        <p>Modern, mobile-friendly sites that convert visitors into customers.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">✍️</div>
+        <h3>Blog Writing</h3>
+        <p>SEO-optimized articles that drive organic traffic.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">📱</div>
+        <h3>Content Calendars</h3>
+        <p>Full-month social plans with captions and visuals.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">📦</div>
+        <h3>Digital Products</h3>
+        <p>Planners, templates, guides, and prompt packs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2>Ready to Work Together?</h2>
+    <p>Let's build something great for your business.</p>
+    <div class="cta-btns">
+      <a href="https://www.fiverr.com/thrivebrightlife" target="_blank" class="cta-btn cta-btn-primary">Hire Me on Fiverr</a>
+      <a href="mailto:hello@coastalcatch.agency" class="cta-btn cta-btn-secondary">Email Me</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">&copy; 2026 Bri from ThriveBright / Coastal Catch Agency. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coastal Catch Agency | Web Design for Pacifica Local Businesses</title>
+<meta name="description" content="Pacifica's local web design agency. We build modern, mobile-friendly websites for small businesses. Fast turnaround, affordable pricing, no long-term contracts. Chat with us today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --navy: #0f1b2d;
+    --blue: #2563eb;
+    --light-blue: #93c5fd;
+    --sky: #dbeafe;
+    --white: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-500: #64748b;
+    --gray-700: #334155;
+    --gray-900: #0f172a;
+  }
+  
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--gray-900);
+    line-height: 1.6;
+  }
+  
+  a { color: var(--blue); text-decoration: none; }
+  
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15,27,45,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  nav .container {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 12px;
+    color: white; font-weight: 700; font-size: 18px;
+  }
+  .nav-brand img { width: 40px; height: 40px; border-radius: 50%; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: white; }
+  .nav-cta {
+    background: var(--blue); color: white !important; padding: 10px 22px;
+    border-radius: 8px; font-weight: 600; font-size: 14px; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: #1d4ed8; }
+  .social-icons { display: flex; gap: 16px; }
+  .social-icons a { color: rgba(255,255,255,0.6); font-size: 18px; }
+  .social-icons a:hover { color: white; }
+  
+  /* Mobile nav */
+  .mobile-toggle { display: none; background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
+  @media (max-width: 768px) {
+    .nav-links, .social-icons { display: none; }
+    .mobile-toggle { display: block; }
+    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--navy); padding: 20px 24px; gap: 16px; }
+  }
+  
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 75vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+    padding-top: 70px;
+  }
+  .hero-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg,
+      rgba(15,27,45,0.85) 0%,
+      rgba(15,27,45,0.6) 50%,
+      rgba(15,27,45,0.4) 100%
+    );
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 600px;
+    padding: 40px 0;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(37,99,235,0.2);
+    color: var(--light-blue);
+    font-size: 13px; font-weight: 600;
+    padding: 6px 16px; border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .hero p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 32px;
+    max-width: 500px;
+  }
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--blue); color: white;
+    padding: 14px 32px; border-radius: 10px;
+    font-weight: 700; font-size: 16px;
+    transition: all 0.2s; border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-block;
+    background: rgba(255,255,255,0.1); color: white;
+    padding: 14px 32px; border-radius: 10px;
+    font-weight: 600; font-size: 16px;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.15); }
+  
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--navy);
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+  .stat-item .num {
+    font-size: 36px; font-weight: 800; color: var(--light-blue);
+  }
+  .stat-item .label {
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+  }
+  @media (max-width: 768px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  
+  /* SECTIONS */
+  section { padding: 48px 0; }
+  .section-label {
+    font-size: 13px; font-weight: 700; color: var(--blue);
+    text-transform: uppercase; letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800; line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 17px; color: var(--gray-500);
+    max-width: 550px; margin-bottom: 28px;
+  }
+  
+  /* SERVICES */
+  .services { background: var(--gray-50); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .service-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid var(--gray-200);
+    transition: all 0.2s;
+  }
+  .service-card:hover {
+    border-color: var(--blue);
+    box-shadow: 0 8px 30px rgba(37,99,235,0.08);
+    transform: translateY(-2px);
+  }
+  .service-icon {
+    width: 48px; height: 48px;
+    background: var(--sky);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  .service-card h3 {
+    font-size: 20px; font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .service-card p {
+    font-size: 14px; color: var(--gray-500);
+    line-height: 1.65;
+  }
+  .service-card.featured {
+    background: var(--navy); color: white;
+    border-color: var(--navy);
+    grid-column: span 2;
+  }
+  .service-card.featured .service-icon { background: rgba(37,99,235,0.2); }
+  .service-card.featured p { color: rgba(255,255,255,0.7); }
+  @media (max-width: 768px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card.featured { grid-column: span 1; }
+  }
+  
+  /* ABOUT */
+  .about {
+    background: var(--navy); color: white;
+    position: relative; overflow: hidden;
+  }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+  }
+  .about .section-sub { color: rgba(255,255,255,0.6); }
+  .about-features { list-style: none; }
+  .about-features li {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 16px;
+    font-size: 15px; color: rgba(255,255,255,0.8);
+  }
+  .about-features .check {
+    width: 24px; height: 24px; min-width: 24px;
+    background: rgba(37,99,235,0.2);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: var(--light-blue);
+  }
+  .about-image {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+  .about-image img { width: 100%; height: 350px; object-fit: cover; }
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+  
+  /* PRICING */
+  .pricing { background: var(--gray-50); }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .price-card {
+    background: white;
+    border-radius: 16px;
+    padding: 36px 28px;
+    border: 1px solid var(--gray-200);
+    text-align: center;
+  }
+  .price-card.popular {
+    border-color: var(--blue);
+    box-shadow: 0 8px 30px rgba(37,99,235,0.12);
+    position: relative;
+  }
+  .popular-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--blue); color: white;
+    font-size: 12px; font-weight: 700;
+    padding: 4px 16px; border-radius: 12px;
+  }
+  .price-card .tier {
+    font-size: 14px; font-weight: 700; color: var(--gray-500);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .price-card .price {
+    font-size: 48px; font-weight: 800; color: var(--gray-900);
+    margin-bottom: 4px;
+  }
+  .price-card .period {
+    font-size: 14px; color: var(--gray-500); margin-bottom: 24px;
+  }
+  .price-card ul {
+    list-style: none; text-align: left; margin-bottom: 28px;
+  }
+  .price-card li {
+    font-size: 14px; color: var(--gray-700);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-100);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .price-card li::before { content: '✓'; color: var(--blue); font-weight: 700; }
+  .price-card .btn-primary { width: 100%; text-align: center; }
+  .addon-note {
+    text-align: center;
+    margin-top: 32px;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+  }
+  .addon-note strong { color: var(--blue); }
+  @media (max-width: 768px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+  
+  /* TESTIMONIALS */
+  .testimonials { background: white; }
+  .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .testimonial-card {
+    background: var(--gray-50);
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid var(--gray-200);
+  }
+  .testimonial-card .stars { color: #f59e0b; font-size: 18px; margin-bottom: 12px; }
+  .testimonial-card .quote {
+    font-size: 15px; color: var(--gray-700);
+    font-style: italic; line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .testimonial-card .author { font-size: 14px; font-weight: 700; }
+  .testimonial-card .role { font-size: 13px; color: var(--gray-500); }
+  @media (max-width: 768px) {
+    .testimonial-grid { grid-template-columns: 1fr; }
+  }
+  
+  /* CTA */
+  .cta-section {
+    background: var(--navy); color: white;
+    text-align: center;
+    padding: 48px 0;
+  }
+  .cta-section h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800; margin-bottom: 16px;
+  }
+  .cta-section p {
+    font-size: 17px; color: rgba(255,255,255,0.6);
+    max-width: 500px; margin: 0 auto 32px;
+  }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .cta-phone {
+    font-size: 20px; font-weight: 700;
+    color: var(--light-blue);
+    margin-top: 24px;
+  }
+  
+  /* CONTACT */
+  .contact { background: var(--gray-50); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  }
+  .contact-info h3 { font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+  .contact-info p { font-size: 15px; color: var(--gray-500); margin-bottom: 24px; }
+  .contact-detail {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 14px; font-size: 15px;
+  }
+  .contact-detail .icon {
+    width: 36px; height: 36px;
+    background: var(--sky); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .contact-form input, .contact-form textarea, .contact-form select {
+    width: 100%; padding: 12px 16px;
+    border: 1px solid var(--gray-200);
+    border-radius: 10px; font-family: inherit;
+    font-size: 14px; margin-bottom: 12px;
+    background: white;
+  }
+  .contact-form textarea { height: 100px; resize: vertical; }
+  .contact-form .btn-primary { width: 100%; text-align: center; }
+  @media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+  
+  /* FOOTER */
+  footer {
+    background: var(--gray-900); color: rgba(255,255,255,0.5);
+    padding: 40px 0;
+  }
+  .footer-grid {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-brand { display: flex; align-items: center; gap: 10px; }
+  .footer-brand img { width: 32px; height: 32px; border-radius: 50%; }
+  .footer-brand span { color: white; font-weight: 700; font-size: 15px; }
+  footer a { color: rgba(255,255,255,0.5); }
+  footer a:hover { color: white; }
+  .footer-links { display: flex; gap: 24px; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <a href="#" class="nav-brand">
+      <img src="images/logo.jpg" alt="Coastal Catch">
+      <span>Coastal Catch Agency</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="blog/">Pacifica Guide</a></li>
+      <li><a href="#contact" class="nav-cta">Book Free Consultation</a></li>
+    </ul>
+    <button class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-bg" src="images/hero.jpg" alt="Pacifica coastline">
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">📍 Based in Pacifica, California</div>
+      <h1>Helping local businesses get found online</h1>
+      <p>We build modern, mobile-friendly websites for the plumbers, salons, auto shops, and restaurants that make Pacifica special.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">Book Free Consultation</a>
+        <a href="#services" class="btn-secondary">Our Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="num">97%</div>
+        <div class="label">of customers search online first</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">48hr</div>
+        <div class="label">average site launch time</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">Local</div>
+        <div class="label">Pacifica-based agency</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">100%</div>
+        <div class="label">mobile-friendly designs</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Everything your business needs to grow online</h2>
+    <p class="section-sub">From websites to social media, we handle the digital stuff so you can focus on what you do best.</p>
+    
+    <div class="services-grid">
+      <div class="service-card featured">
+        <div class="service-icon">🌐</div>
+        <h3>Website Design & Development</h3>
+        <p>Your business deserves more than a Facebook page. We build clean, modern, mobile-friendly websites that get you found on Google and make it easy for customers to call. From one-page sites to full business websites, live in 48 hours.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤖</div>
+        <h3>Customer Service Automation</h3>
+        <p>Provide fast, friendly support around the clock. We set up online booking, automated responses, and lead capture so your customers always get a response and you never miss a call.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>Email & Social Media Marketing</h3>
+        <p>Stay consistent with professionally designed campaigns. We keep your brand polished while reaching customers wherever they are.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⭐</div>
+        <h3>Reputation Management</h3>
+        <p>We help you collect and manage reviews, respond to customer feedback, and showcase your five-star service, turning happy customers into repeat business.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📬</div>
+        <h3>Direct Mail Campaigns</h3>
+        <p>Put your business in every mailbox in your area with smart, targeted postcards. Our campaigns drive local awareness and keep your brand top-of-mind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="section-label" style="color: var(--light-blue);">About Us</div>
+        <h2 class="section-title" style="color: white;">We're your neighbors, not some big agency</h2>
+        <p class="section-sub">Coastal Catch Agency is based right here in Pacifica. We help local businesses build a professional online presence without the agency price tag.</p>
+        <ul class="about-features">
+          <li><span class="check">✓</span> We're local. We know the community.</li>
+          <li><span class="check">✓</span> Fast turnaround. Most projects done in 48 hours.</li>
+          <li><span class="check">✓</span> No long-term contracts. Cancel anytime.</li>
+          <li><span class="check">✓</span> Real results, not fancy jargon.</li>
+          <li><span class="check">✓</span> Transparent pricing. No hidden fees.</li>
+        </ul>
+      </div>
+      <div class="about-image">
+        <img src="images/business.jpg" alt="Local business">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Simple, transparent pricing</h2>
+    <p class="section-sub">No hidden fees. No long-term contracts. Just great work at a fair price.</p>
+    
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="tier">Starter</div>
+        <div class="price">$297</div>
+        <div class="period">one-time</div>
+        <ul>
+          <li>1-page website</li>
+          <li>Mobile-friendly design</li>
+          <li>Contact form</li>
+          <li>Google-optimized</li>
+          <li>Live in 48 hours</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Get Started</a>
+      </div>
+      
+      <div class="price-card popular">
+        <div class="popular-badge">Most Popular</div>
+        <div class="tier">Standard</div>
+        <div class="price">$497</div>
+        <div class="period">one-time</div>
+        <ul>
+          <li>Up to 5 pages</li>
+          <li>Mobile-friendly design</li>
+          <li>Contact form + map</li>
+          <li>Google-optimized SEO</li>
+          <li>Live in 48 hours</li>
+          <li>1 round of revisions</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Get Started</a>
+      </div>
+      
+      <div class="price-card">
+        <div class="tier">Premium</div>
+        <div class="price">$797</div>
+        <div class="period">one-time</div>
+        <ul>
+          <li>Unlimited pages</li>
+          <li>Custom design</li>
+          <li>Photo gallery</li>
+          <li>Advanced SEO</li>
+          <li>Live in 72 hours</li>
+          <li>3 rounds of revisions</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Get Started</a>
+      </div>
+    </div>
+    
+    <div class="addon-note">
+      <strong>Monthly Maintenance: $97/mo</strong> - We keep your site updated, secure, and running smooth. Includes unlimited text/image edits, hosting, and support.<br>
+      <strong>Automated Customer Service + Online Booking: $147/mo</strong> - 24/7 customer support, appointment scheduling, and lead capture right on your website.
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-label">What People Say</div>
+    <h2 class="section-title">Trusted by business owners</h2>
+    <p class="section-sub">Real feedback from real clients.</p>
+    
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="quote">"Bri is hard working, detail-oriented, and results-driven. She demonstrated initiative and hustle in getting event partnerships and sponsorships set up, and built a scalable, replicable approach to events that we were able to ramp up quickly in all markets. Her project management skills were impressive."</div>
+        <div class="author">Ajay P.</div>
+        <div class="role">Co-Founder & CEO, Tech Startup</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="quote">"Bri is a special talent. She had the creative vision and follow through to orchestrate a national marketing events strategy that played an integral role in both brand awareness and record high new customer growth."</div>
+        <div class="author">Ashkan M.</div>
+        <div class="role">Partner, Venture Capital Firm</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="quote">"We had no strategy and little activity but Bri quickly helped us establish our voice by developing a number of fun campaigns. With her amazing attitude and energy, she helped us with a number of important projects."</div>
+        <div class="author">Jason J.</div>
+        <div class="role">CEO, Smart Home Company</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to get your business online?</h2>
+    <p>Get a free consultation and see how we can help you attract more customers.</p>
+    <div class="cta-buttons">
+      <a href="#contact" class="btn-primary">Book Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-label">Free Consultation</div>
+        <h3>Book Your Free 15-Minute Strategy Call</h3>
+        <p>Tell us about your business and we'll show you exactly how a professional website can bring in more customers. No pressure, no obligations.</p>
+        
+        <div class="contact-detail">
+          <div class="icon">✅</div>
+          <div><strong>100% free, no strings attached</strong></div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon">⚡</div>
+          <div><strong>We'll respond within 2 hours</strong></div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon">🎯</div>
+          <div><strong>Get a custom plan for your business</strong></div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon">💬</div>
+          <div><a href="sms:6504515467&body=Hi!%20I%27m%20interested%20in%20a%20website%20for%20my%20business." style="color:inherit;text-decoration:none;"><strong>Text us: (650) 451-5467</strong></a></div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon">📧</div>
+          <div><strong>hello@coastalcatch.agency</strong></div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon">📍</div>
+          <div><strong>Pacifica, California</strong></div>
+        </div>
+      </div>
+      
+      <form class="contact-form" action="https://formsubmit.co/hello@coastalcatch.agency" method="POST">
+        <input type="hidden" name="_subject" value="🗓️ Free Consultation Request from coastalcatch.agency">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://coastalcatch.agency/thank-you.html">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="name" placeholder="Your Name *" required>
+        <input type="text" name="business" placeholder="Business Name *" required>
+        <input type="email" name="email" placeholder="Email *" required>
+        <input type="tel" name="phone" placeholder="Phone Number *" required>
+        <select name="business_type" required>
+          <option value="" disabled selected>What type of business? *</option>
+          <option value="restaurant">Restaurant / Food Service</option>
+          <option value="salon">Salon / Barbershop / Spa</option>
+          <option value="contractor">Contractor / Tradesperson</option>
+          <option value="retail">Retail / Shop</option>
+          <option value="fitness">Fitness / Wellness</option>
+          <option value="professional">Professional Services (Law, Accounting, etc.)</option>
+          <option value="auto">Auto Repair / Detailing</option>
+          <option value="cleaning">Cleaning / Home Services</option>
+          <option value="other">Other</option>
+        </select>
+        <select name="has_website">
+          <option value="" disabled selected>Do you currently have a website?</option>
+          <option value="no">No, I need a new website</option>
+          <option value="outdated">Yes, but it's outdated</option>
+          <option value="redesign">Yes, but I want a redesign</option>
+          <option value="not-sure">Not sure what I need</option>
+        </select>
+        <select name="preferred_time">
+          <option value="" disabled selected>Best time for a quick call?</option>
+          <option value="morning">Morning (9 AM - 12 PM)</option>
+          <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+          <option value="evening">Evening (4 PM - 7 PM)</option>
+          <option value="email-only">I prefer email only</option>
+        </select>
+        <textarea name="message" placeholder="Anything else you'd like us to know? (optional)"></textarea>
+        <button type="submit" class="btn-primary">Book My Free Consultation →</button>
+        <p style="text-align:center;font-size:12px;color:var(--gray-400);margin-top:8px;">No spam. We'll only contact you about your consultation.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo.jpg" alt="Coastal Catch">
+        <span>Coastal Catch Agency</span>
+      </div>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div style="font-size: 13px;">© 2026 Coastal Catch Agency. Pacifica, CA.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- POPUP -->
+<div id="popup-overlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.08); z-index:999; display:flex; align-items:flex-start; justify-content:center; padding-top:90px;">
+  <div style="background:rgba(15,27,45,0.85); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:28px 36px; max-width:680px; width:92%; text-align:center; position:relative; box-shadow:0 12px 40px rgba(0,0,0,0.2); display:flex; align-items:center; gap:28px;">
+    <button onclick="closePopup()" style="position:absolute; top:10px; right:14px; background:none; border:none; font-size:22px; cursor:pointer; color:rgba(255,255,255,0.5);">✕</button>
+    <div style="font-size:36px; flex-shrink:0;">🎁</div>
+    <div style="text-align:left; flex:1;">
+      <h3 style="font-size:20px; font-weight:800; margin-bottom:6px; color:white;">Free Website for Your Business</h3>
+      <p style="font-size:14px; color:rgba(255,255,255,0.7); margin-bottom:14px; line-height:1.55;">We're launching in Pacifica and offering our first three clients a completely free custom website. No catch, no hidden fees. We'd just love your feedback!</p>
+      <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+        <a href="#contact" onclick="closePopup()" style="display:inline-block; background:#2563eb; color:white; padding:10px 24px; border-radius:8px; font-weight:700; font-size:14px; text-decoration:none;">Claim Your Spot</a>
+        <div style="display:flex; gap:8px;" id="countdown">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:6px 10px; text-align:center;">
+            <div style="font-size:18px; font-weight:800; color:#93c5fd;" id="cd-days">0</div>
+            <div style="font-size:8px; color:rgba(255,255,255,0.5); text-transform:uppercase;">Days</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:6px 10px; text-align:center;">
+            <div style="font-size:18px; font-weight:800; color:#93c5fd;" id="cd-hours">0</div>
+            <div style="font-size:8px; color:rgba(255,255,255,0.5); text-transform:uppercase;">Hrs</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:6px 10px; text-align:center;">
+            <div style="font-size:18px; font-weight:800; color:#93c5fd;" id="cd-mins">0</div>
+            <div style="font-size:8px; color:rgba(255,255,255,0.5); text-transform:uppercase;">Min</div>
+          </div>
+        </div>
+        <span style="font-size:12px; color:#fca5a5; font-weight:700;">Expires March 7</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Smooth scrolling -->
+<script>
+// Popup
+const popup = document.getElementById('popup-overlay');
+function closePopup() {
+  popup.style.display = 'none';
+  sessionStorage.setItem('popupClosed', '1');
+}
+// Show after 5 seconds if not already dismissed
+if (!sessionStorage.getItem('popupClosed')) {
+  setTimeout(() => { popup.style.display = 'flex'; }, 5000);
+}
+// Countdown to March 31, 2026
+function updateCountdown() {
+  const end = new Date('2026-03-07T23:59:59-08:00');
+  const now = new Date();
+  const diff = end - now;
+  if (diff <= 0) return;
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  document.getElementById('cd-days').textContent = days;
+  document.getElementById('cd-hours').textContent = hours;
+  document.getElementById('cd-mins').textContent = mins;
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('navLinks').classList.remove('open');
+    }
+  });
+});
+</script>
+
+<!-- tawk.to Chat Widget (replace default/default with your actual tawk.to widget URL) -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/69a74258fad6b61c35fd47ac/1jiqlma54';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!-- End tawk.to -->
+
+<!-- Floating Text Us Button -->
+<style>
+.text-us-fab {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #16a34a;
+  color: white;
+  padding: 14px 22px;
+  border-radius: 50px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(22,163,74,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.text-us-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(22,163,74,0.5);
+  text-decoration: none;
+  color: white;
+}
+.text-us-fab .fab-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+.text-us-fab .fab-label {
+  display: inline;
+}
+/* Pulse animation on load */
+@keyframes fabPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(22,163,74,0.4); }
+  50% { box-shadow: 0 4px 30px rgba(22,163,74,0.7); }
+}
+.text-us-fab { animation: fabPulse 2s ease-in-out 3; }
+@media (max-width: 480px) {
+  .text-us-fab { padding: 12px 18px; font-size: 14px; bottom: 18px; left: 18px; }
+}
+</style>
+<a href="sms:6504515467&body=Hi!%20I%27m%20interested%20in%20a%20website%20for%20my%20business." class="text-us-fab">
+  <span class="fab-icon">💬</span>
+  <span class="fab-label">Text Us</span>
+</a>
+
+</body>
+</html>
